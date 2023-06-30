@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     {
         if (_thrusting) // bir degerle kontrol etmememizin nedeni bool deger eger 1 ise calisacak olmasidir. Yani parantez icine _thrusting == 1 yazmakla ayni anlama gelir
         {
-            _rigidbody.AddForce(this.transform.up * thrustSpeed);   //yukarý yönde, thrustSpeed in sahip olduðu degerle kuvvet uyguladik
+            _rigidbody.AddForce(this.transform.up * thrustSpeed);   //yukari yönde, thrustSpeed in sahip olduðu degerle kuvvet uyguladik
         }
 
         if (_turnDirections != 0)   //donus yonu 0 dan farklýysa 
@@ -55,9 +55,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void Shoot()    //ates etme fonksiyonu
     {
-        Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
-        bullet.Project(this.transform.up);
+        Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);   //bullet isimli degiskenin klonunu yaratmak iscin istenen degiskenleri girdik.(hangi nesneyi, hangi pozisyonda, hangi rotasyonda)
+        bullet.Project(this.transform.up);  //bullet nesnesinin bilgisini Project fonksiyonunda yerine koyduk
     }
 }
