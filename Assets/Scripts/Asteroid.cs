@@ -10,6 +10,10 @@ public class Asteroid : MonoBehaviour
 
     public float maxSize = 1.5f;    //maksimum boyut
 
+    public float speed = 50.0f;     //hiz
+
+    public float maxLifetime = 30.0f;
+
     private SpriteRenderer _spriteRenderer;     // spritrenderer refansý olusturur
 
     private Rigidbody2D _rigidBody;     //rigidbody referansý olusturur
@@ -28,5 +32,11 @@ public class Asteroid : MonoBehaviour
         this.transform.localScale = Vector3.one * this.size;    // new vector3(this.size, this.size, this.size) ile ayný anlamý tasir. Girilen size degerini x,y ve z icin ayný degerde yeniden boyutlandirir. 
 
         _rigidBody.mass = this.size;    //nesnenin rigidbodysinin yercekimi kuvvetine size degiskenin sahip oldugu degeri atadik
+    }
+
+    public void SetTrajectory(Vector2 direction)
+    {
+        _rigidBody.AddForce(direction * this.speed);
+        Destroy(this.gameObject, this.maxLifetime);
     }
 }
