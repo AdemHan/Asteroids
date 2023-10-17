@@ -12,7 +12,7 @@ public class Asteroid : MonoBehaviour
 
     public float speed = 50.0f;     //hiz
 
-    public float maxLifetime = 30.0f;
+    public float maxLifetime = 30.0f;   //max yasam suresi
 
     private SpriteRenderer _spriteRenderer;     // spritrenderer refansý olusturur
 
@@ -38,5 +38,30 @@ public class Asteroid : MonoBehaviour
     {
         _rigidBody.AddForce(direction * this.speed);
         Destroy(this.gameObject, this.maxLifetime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)      //carpismalari yakalar
+    {
+        if (collision.gameObject.tag == "Bullet")       //carpisilan objenin etiket bullet ise
+        {
+            if ((this.size * 0.5f) >= this.minSize)     //yari boyutu minimum boyuta büyük esitse
+            {
+                CreateSplit();      //bölük yarat
+                CreateSplit();      //bölük yarat
+
+            }
+
+            Destroy(this.gameObject);       //objeyi yok et
+        }
+    }
+
+    private void CreateSplit()
+    {
+        Vector2 position = this.transform.position;
+        position += Random.insideUnitCircle * 0.5f;
+
+        Asteroid half = Instantiate(this, position, this.transform.rotation);
+        half.size = this.size * 0.5f;
+        half.SetTrajectory(Random.insideUnitCircle.normalized * this.speed);
     }
 }
