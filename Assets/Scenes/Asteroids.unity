@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: -5817298996509697369, guid: 691d392e99b1d5a42b9db80fbcc54d4a, type: 3}
-  thrustSpeed: 1
+  thrustSpeed: 1.5
   turnSpeed: 0.1
 --- !u!1 &1018071864
 GameObject:
@@ -687,6 +687,7 @@ MonoBehaviour:
   respawneTime: 3
   lives: 3
   respawneInvulnerabilityTime: 3
+  score: 0
 --- !u!4 &1018071866
 Transform:
   m_ObjectHideFlags: 0

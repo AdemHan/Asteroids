@@ -12,11 +12,26 @@ public class GameManager : MonoBehaviour
 
     public float respawneInvulnerabilityTime = 3.0f;                                                //yeniden dogdugunda carpismayacagi sure
 
+    public int score = 0;
+
 
     public void AsteroidDestroyed(Asteroid asteroid)                                                //Asteroid yok oldugunda
     {
         this.explosion.transform.position = asteroid.transform.position;                            //patlama efektinin konumunu asteroidin konumuna esitle
         this.explosion.Play();                                                                      //efekti oynat
+
+        if (asteroid.size < 0.75f)
+        {
+            score += 100;
+        }
+        else if (asteroid.size < 1.25f)
+        {
+            score += 50;
+        }
+        else
+        {
+            score += 25;
+        }
     }
 
     public void PlayerDied()                                                                        //oyuncu oldugunde
@@ -52,6 +67,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-                                                                                                    //yazilacak
+        this.lives = 3;                                                                              //yazilacak
+        this.score = 0;
+
+        Invoke(nameof(Respawne), this.respawneTime);                                          
     }
 }
