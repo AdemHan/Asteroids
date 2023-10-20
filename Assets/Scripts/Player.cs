@@ -60,4 +60,16 @@ public class Player : MonoBehaviour
         Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);   //bullet isimli degiskenin klonunu yaratmak iscin istenen degiskenleri girdik.(hangi nesneyi, hangi pozisyonda, hangi rotasyonda)
         bullet.Project(this.transform.up);  //bullet nesnesinin bilgisini Project fonksiyonunda yerine koyduk
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Asteroid")
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = 0.0f;
+
+            this.gameObject.SetActive(false);
+            FindObjectOfType<GameManager>().PlayerDied();
+        }
+    }
 }

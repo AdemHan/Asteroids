@@ -57,11 +57,11 @@ public class Asteroid : MonoBehaviour
 
     private void CreateSplit()
     {
-        Vector2 position = this.transform.position;
-        position += Random.insideUnitCircle * 0.5f;
+        Vector2 position = this.transform.position;     //Yaratilacak olan yeni objenin pozisyonu ayni olsun
+        position += Random.insideUnitCircle * 0.5f;     //Birim cember üzerinde rastgele bir noktaya spawn noktaisini kaydirir
 
-        Asteroid half = Instantiate(this, position, this.transform.rotation);
-        half.size = this.size * 0.5f;
-        half.SetTrajectory(Random.insideUnitCircle.normalized * this.speed);
+        Asteroid half = Instantiate(this, position, this.transform.rotation);     //Asteroidin yonü pozisyonu ve nesnesini yaratýr ve bu özellikleri half degiskenine atanýr.
+        half.size = this.size * 0.5f;       //bu objenin boyutunu yarýya indir
+        half.SetTrajectory(Random.insideUnitCircle.normalized * this.speed);        //Rastgele bir yönde ve speed hiziyla carpilarak ilerlemesini saglar
     }
 }
